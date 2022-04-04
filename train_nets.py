@@ -62,12 +62,12 @@ def train_distinguisher(num_epochs,diff = (0x0040,0), num_rounds=7, depth=1):
     net.compile(optimizer='adam',loss='mse',metrics=['acc']);
     
     #baseline(fake) training data
-    #X, Y = cipher.make_train_data(10**6,num_rounds,diff);
-    #X_eval, Y_eval = cipher.make_train_data(10**5, num_rounds,diff);
+    X, Y = cipher.make_train_data(10**6,num_rounds,diff);
+    X_eval, Y_eval = cipher.make_train_data(10**5, num_rounds,diff);
     
     #generate training and validation data
-    X, Y = cipher.real_differences_data(10**6,num_rounds,diff);
-    X_eval, Y_eval = cipher.real_differences_data(10**5, num_rounds,diff);
+    #X, Y = cipher.real_differences_data(10**6,num_rounds,diff);
+    #X_eval, Y_eval = cipher.real_differences_data(10**5, num_rounds,diff);
     
     
     #set up model checkpoint
