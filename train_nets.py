@@ -1,5 +1,5 @@
-#import SLIM as cipher
-import lbciot as cipher
+import SLIM as cipher
+#import lbciot as cipher
 
 import numpy as np
 
