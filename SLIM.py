@@ -84,6 +84,9 @@ def dec_one_round(c,k):
     r = l;
     l = r_temp;
   
+    r=c[0];
+    l=c[1];
+
     return(l,r);
 
 def enc_one_round_LBC(p,k):
