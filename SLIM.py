@@ -65,7 +65,9 @@ def enc_one_round(p,k):
     l = r;
     r = l_temp;
   
-    r,l =  p[0], p[1];
+    r_return,l_return =  p[0], p[1];
+    r=r_return;
+    l=l_return;
     return(l,r);
 
 def dec_one_round(c,k):
