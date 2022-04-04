@@ -17,7 +17,6 @@ P =     [12,3,7,13,9,8,14,1,4,15,10,5,16,2,6,11];
 
 S =  [12,5,6,11,9,0,10,13,3,14,15,8,4,7,1,2];
 
-
 def shuffle_together(l):
     state = np.random.get_state();
     for x in l:
@@ -67,6 +66,7 @@ def enc_one_round(p,k):
   
     return(l,r);
 
+
 def dec_one_round(c,k):
     l,r =  c[0], c[1];
     l_temp = l;
@@ -87,7 +87,7 @@ def dec_one_round(c,k):
 
     return(l,r);
 
-
+    
 #def dec_one_round(c,k):
 #    c0, c1 = c[0], c[1];
 #    c1 = c1 ^ c0;
@@ -173,6 +173,7 @@ def permute(x,p):
     return y;
 
 
+
 def encrypt(p, ks):
     x, y = p[0], p[1];
     for k in ks:
@@ -185,13 +186,6 @@ def decrypt(c, ks):
       x, y = dec_one_round((x,y), k);
       #x, y = enc_one_round((x,y), k);
     return(x,y);
-
-#Original
-#def decrypt(c, ks):
-#    x, y = c[0], c[1];
-#    for k in reversed(ks):
-#        x, y = dec_one_round((x,y), k);
-#    return(x,y);
 
 def check_testvector():
   key = (0x1918,0x1110,0x0908,0x0100)
