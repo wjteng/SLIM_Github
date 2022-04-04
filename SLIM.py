@@ -62,6 +62,7 @@ def enc_one_round(p,k):
     #r_p = permute(r_s, P);
     #l_temp = (l^r_p) ;
     l_temp = l;
+    print("here");
     l = r;
     r = l_temp;
   
