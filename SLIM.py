@@ -49,10 +49,9 @@ def ror(x,k):
 
 def enc_one_round(p,k):
     l,r =  p[0], p[1];
-    r_temp = r;
 
     #original#
-    r_k = (r_temp ^ k) ;
+    r_k = (r ^ k) ;
     r_s = substitute(r_k,S);
     
     #swapped#
@@ -65,9 +64,6 @@ def enc_one_round(p,k):
     l = r;
     r = l_temp;
   
-    r_return,l_return =  p[0], p[1];
-    r=r_return*1+0;
-    l=l_return*1+0;
     return(l,r);
 
 def dec_one_round(c,k):
