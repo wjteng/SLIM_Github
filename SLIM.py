@@ -234,10 +234,11 @@ def substitute (x , s):
 
     return y;
 
-def permute(x,p):   
+
+def permute(x,p):
     y = x*0;
     for i in range(0,16):
-      y+=(x%2)*(2**(15-p[15-i]));
+      y+=(x%2)*(2**(16-p[15-i]));
       x=x>>1;
     return y;
 
