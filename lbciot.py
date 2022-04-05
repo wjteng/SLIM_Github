@@ -61,7 +61,7 @@ def enc_one_round(p,k):
 
     #original#
     #r_k = (r ^ k) ;
-    r_k = r;
+    r_k = r*1;
     r_s = substitute(r_k,S);
     
     #swapped#
