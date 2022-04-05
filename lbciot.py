@@ -70,7 +70,10 @@ def enc_one_round(p,k):
 
     r_p = permute(r_s, P1);
     l_temp = (l^r_p) ;
-  
+    
+    r = l_temp;
+    l = r;
+
     return(l,r);
 
 def dec_one_round(c,k):
