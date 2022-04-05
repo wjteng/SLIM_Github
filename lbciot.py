@@ -55,34 +55,26 @@ def ror(x,k):
 #    c1 = c1 ^ c0;
 #    return(c0,c1);
 
+
 def enc_one_round(p,k):
     l,r =  p[0], p[1];
+
+    #original#
+    #r_k = (r ^ k) ;
+    #r_s = substitute(r_k,S);
+    
+    #swapped#
+    #r_temp = r_temp+0;
+    #r_temp = substitute(r_temp,S);
+    #r_temp = (r_temp ^ k) ;
+
+    #r_p = permute(r_s, P);
+    #l_temp = (l^r_p) ;
   
-    #P2#
-    r_p = permute(r,P2);
-
-    #P2 Removed
-    #r_p = r;
-   
-    #Left Shift   
-    r_7 = rol(r,7);
-    #r_7 = r * 1;
-
-    #Substitution
-    r_s = substitute (r_7,S);
-
-    #Modular Addition
-    l= (l^r_s^k);
-
-    #P1
-    r = permute(l,P1);
-
-    #P1 removed
-    #r = l;
-
-    l=r_p;
+    l = l*1;
+    r = r*1;
+  
     return(l,r);
-
 
 def dec_one_round(c,k):
     l,r =  c[0], c[1];
