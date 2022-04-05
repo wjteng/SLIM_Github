@@ -60,7 +60,8 @@ def enc_one_round(p,k):
     l,r =  p[0], p[1];
 
     #original#
-    r_k = (r ^ k) ;
+    #r_k = (r ^ k) ;
+    r_k = r;
     r_s = substitute(r_k,S);
     
     #swapped#
