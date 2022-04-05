@@ -50,19 +50,22 @@ def enc_one_round(p,k):
     l,r =  p[0], p[1];
 
     #original#
-    #r_k = (r ^ k) ;
-    #r_s = substitute(r_k,S);
+    r_k = r*1;
+    r_k = (r_k ^ k) ;
+    r_s = substitute(r_k,S);
     
     #swapped#
     #r_temp = r_temp+0;
     #r_temp = substitute(r_temp,S);
     #r_temp = (r_temp ^ k) ;
 
-    #r_p = permute(r_s, P);
-    #l_temp = (l^r_p) ;
-    l_temp = l+0;
-    l = l_temp;
-    r = r+0;
+    r_p = permute(r_s, P);
+    l_temp = l*1;
+    l_temp = (l_temp^r_p) ;
+
+    l = r*1;
+    r = l_temp;
+    
   
     return(l,r);
 
