@@ -51,10 +51,11 @@ def enc_one_round(p,k):
 
     #original#
     r_k = r*1;
-    print(r_k);
-    print(k);
+    print("start");
+    print("r_k:",r_k);
+    print("k:",k);
     r_k = (r_k ^ k) ;
-    print(r_k);
+    print("r_k:",r_k);
     r_s = substitute(r_k,S);
     
     #swapped#
