@@ -51,8 +51,7 @@ def enc_one_round(p,k):
 
     #original#
     r_k = r*1;
-    k_temp = k * 1;
-    r_k = (r_k ^ k_temp) ;
+    r_k = (r_k ^ k) ;
     r_s = substitute(r_k,S);
     
     #swapped#
@@ -109,7 +108,6 @@ def dec_one_round(c,k):
 #        l[i%3], ks[i+1] = enc_one_round((l[i%3], ks[i]), i);
 #    return(ks);
 
-#SLIM Key Schedule
 def expand_key(k,t):
     ks = [0 for i in range(t)];
     
@@ -133,7 +131,7 @@ def expand_key(k,t):
           Mnib[2] = np.uint16((M>>8)&0xf);
           Mnib[3] = np.uint16((M>>12)&0xf);
 
-          Lnib = rolnib(Lnib,2);
+          Lnib = rolnib(Lnib,3);
 
           Lnib = Lnib^Mnib;
 
@@ -141,7 +139,13 @@ def expand_key(k,t):
             for j_2 in range(0,Lnib.shape[1]):
               Lnib[j_1][j_2]=S[Lnib[j_1][j_2]];
 
-          Mnib = rolnib(Mnib,3);
+          M_16 = Mnib[0] + Mnib[1]*(2**4) + Mnib[2]*(2**8) + np.uint16(Mnib[3])*(2**12);
+          M_16 = permute(M_16,P1);
+
+          Mnib[0] = np.uint16((M_16)&0xf);
+          Mnib[1] = np.uint16((M_16>>4)&0xf);
+          Mnib[2] = np.uint16((M_16>>8)&0xf);
+          Mnib[3] = np.uint16((M_16>>12)&0xf);
 
           Mnib = Mnib^Lnib;
 
@@ -152,8 +156,6 @@ def expand_key(k,t):
           L = np.uint64(L>>16) + np.uint64(L_16)*(2**24);
 
           ks[i] = M_16;
-
-         
     return(ks);
 
 def substitute (x , s):
