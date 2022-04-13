@@ -144,7 +144,7 @@ def expand_key(k,t):
               Lnib[j_1][j_2]=S[Lnib[j_1][j_2]];
 
           M_16 = Mnib[0] + Mnib[1]*(2**4) + Mnib[2]*(2**8) + np.uint16(Mnib[3])*(2**12);
-          M_16 = permute(M_16,P1);
+          M_16 = permute(M_16,P);
 
           Mnib[0] = np.uint16((M_16)&0xf);
           Mnib[1] = np.uint16((M_16>>4)&0xf);
