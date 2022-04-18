@@ -51,13 +51,13 @@ def enc_one_round(p,k):
 
     #original#
     r_k = r*1
-    r_k = (r_k ^ k) ;
+    #r_k = (r_k ^ k) ;
     r_s = substitute(r_k,S);
 
     r_p = permute(r_s, P);
 
     l_temp = l*1;
-    l_temp = (l_temp^r_p) ;
+    l_temp = (l_temp^r_p^k) ;
 
     l = r*1;
     r = l_temp;
