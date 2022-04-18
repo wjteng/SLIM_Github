@@ -241,6 +241,24 @@ def readcsv(datei):
     Y = np.array(Y, dtype=np.uint8); Z = np.array(Z);
     return(X,Y,Z);
 
+def urandom_from_random(rng, length):
+    if length == 0:
+        return b''
+
+    import sys
+    chunk_size = 65535
+    chunks = []
+    while length >= chunk_size:
+        chunks.append(rng.getrandbits(
+                chunk_size * 8).to_bytes(chunk_size, sys.byteorder))
+        length -= chunk_size
+    if length:
+        chunks.append(rng.getrandbits(
+                length * 8).to_bytes(length, sys.byteorder))
+    result = b''.join(chunks)
+    return result
+
+
 #baseline training data generator
 def make_train_data(n, nr, diff=(0x0040,0)):
   print(diff);
@@ -262,12 +280,12 @@ def make_train_data(n, nr, diff=(0x0040,0)):
 def real_differences_data(n, nr, diff=(0x0040,0)):
   random.seed(0);
   #generate labels
-  Y = np.frombuffer(random(n), dtype=np.uint8); Y = Y & 1;
+  Y = np.frombuffer(urandom_from_random(n), dtype=np.uint8); Y = Y & 1;
   #generate keys
-  keys = np.frombuffer(random(10*n),dtype=np.uint16).reshape(5,-1);
+  keys = np.frombuffer(urandom_from_random(10*n),dtype=np.uint16).reshape(5,-1);
   #generate plaintexts
-  plain0l = np.frombuffer(random(2*n),dtype=np.uint16);
-  plain0r = np.frombuffer(random(2*n),dtype=np.uint16);
+  plain0l = np.frombuffer(urandom_from_random(2*n),dtype=np.uint16);
+  plain0r = np.frombuffer(urandom_from_random(2*n),dtype=np.uint16);
   #apply input difference
   plain1l = plain0l ^ diff[0]; plain1r = plain0r ^ diff[1];
   num_rand_samples = np.sum(Y==0);
@@ -276,8 +294,8 @@ def real_differences_data(n, nr, diff=(0x0040,0)):
   ctdata0l, ctdata0r = encrypt((plain0l, plain0r), ks);
   ctdata1l, ctdata1r = encrypt((plain1l, plain1r), ks);
   #generate blinding values
-  k0 = np.frombuffer(random(2*num_rand_samples),dtype=np.uint16);
-  k1 = np.frombuffer(random(2*num_rand_samples),dtype=np.uint16);
+  k0 = np.frombuffer(urandom_from_random(2*num_rand_samples),dtype=np.uint16);
+  k1 = np.frombuffer(urandom_from_random(2*num_rand_samples),dtype=np.uint16);
   #apply blinding to the samples labelled as random
   ctdata0l[Y==0] = ctdata0l[Y==0] ^ k0; ctdata0r[Y==0] = ctdata0r[Y==0] ^ k1;
   ctdata1l[Y==0] = ctdata1l[Y==0] ^ k0; ctdata1r[Y==0] = ctdata1r[Y==0] ^ k1;
