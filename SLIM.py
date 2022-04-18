@@ -187,7 +187,7 @@ def encrypt(p, ks):
     for k in ks:
       x,y = enc_one_round((x,y), k);
       print("round ",i,":",x,y);
-      i++;
+      i=i+1;
     return(x, y);
 
 def decrypt(c, ks):
