@@ -199,9 +199,15 @@ def permute(x,p):
 def encrypt(p, ks):
     x, y = p[0], p[1];
     #keyless 1st round
+    print("round 0: ",x,y,ks);
+    
     x,y = enc_one_round_keyless((x,y));
+    print("round 1: ",x,y);
+    i=2;
     for k in ks:
       x,y = enc_one_round((x,y), k);
+      print("round ",i,":",x,y,k);
+      i=i+1;
     return(x, y);
 
 def decrypt(c, ks):
