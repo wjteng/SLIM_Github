@@ -1,5 +1,8 @@
 import numpy as np
 from os import urandom
+import random
+
+
 
 def WORD_SIZE():
     return(16);
@@ -257,6 +260,7 @@ def make_train_data(n, nr, diff=(0x0040,0)):
 
 #real differences data generator
 def real_differences_data(n, nr, diff=(0x0040,0)):
+  random.seed(0);
   #generate labels
   Y = np.frombuffer(random(n), dtype=np.uint8); Y = Y & 1;
   #generate keys
