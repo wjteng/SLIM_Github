@@ -2,7 +2,7 @@ import numpy as np
 from os import urandom
 import random
 
-
+round_print = 1;
 
 def WORD_SIZE():
     return(16);
@@ -55,6 +55,8 @@ def enc_one_round(p,k):
     #original#
     r_k = r*1
     #r_k = (r_k ^ k) ;
+    print("round ",print_round, " before S: ",r_k);
+    print_round = print_round + 1;
     r_s = substitute(r_k,S);
 
     r_p = permute(r_s, P);
@@ -182,12 +184,9 @@ def permute(x,p):
 
 def encrypt(p, ks):
     x, y = p[0], p[1];
-    print("round 0: ",x,y);
-    i=1;
+    print("ks: ",ks);
     for k in ks:
       x,y = enc_one_round((x,y), k);
-      print("round ",i,":",x,y);
-      i=i+1;
     return(x, y);
 
 def decrypt(c, ks):
