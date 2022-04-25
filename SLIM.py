@@ -56,6 +56,7 @@ def enc_one_round(p,k):
     r_k = r*1
     #r_k = (r_k ^ k) ;
     global round_print;
+    print("round ",round_print, " before S: ",l);
     print("round ",round_print, " before S: ",r_k);
     round_print = round_print + 1;
     r_s = substitute(r_k,S);
