@@ -183,8 +183,10 @@ def permute(x,p):
 
 def encrypt(p, ks):
     x, y = p[0], p[1];
-  
+    
     for k in ks:
+      print(k);
+      print(ks[0]);
       #x,y = enc_one_round((x,y), 0);
       x,y = enc_one_round((x,y), k);
     return(x, y);
