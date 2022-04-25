@@ -321,7 +321,7 @@ def real_differences_data(n, nr, diff=(0x0040,0)):
   plain1l = plain0l ^ diff[0]; plain1r = plain0r ^ diff[1];
   num_rand_samples = np.sum(Y==0);
   #expand keys and encrypt
-  ks = expand_key(keys, nr);
+  ks = expand_key(keys, nr-1);
   ctdata0l, ctdata0r = encrypt((plain0l, plain0r), ks);
   ctdata1l, ctdata1r = encrypt((plain1l, plain1r), ks);
   #generate blinding values
