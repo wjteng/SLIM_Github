@@ -54,10 +54,6 @@ def enc_one_round(p,k):
 
     #original#
     r_k = (r ^ k) ;
-    global round_print;
-    print("round ",round_print, " before S: ",l);
-    print("round ",round_print, " before S: ",r_k);
-    round_print = round_print + 1;
     r_k2 = r_k * 1;
     r_s = substitute(r_k2,S);
 
@@ -67,31 +63,6 @@ def enc_one_round(p,k):
     l_temp = (l_temp^r_p) ;
 
     l = r_k;
-    r = l_temp;
-    
-  
-    return(l,r);
-
-
-def enc_one_round_keyless(p):
-    l,r =  p[0], p[1];
-    
-    #original#
-    r_k = r
-    
-    global round_print;
-    print("round ",round_print, " before S: ",l);
-    print("round ",round_print, " before S: ",r_k);
-    round_print = round_print + 1;
-    r_k2 = r_k * 1;
-    r_s = substitute(r_k2,S);
-
-    r_p = permute(r_s, P);
-
-    l_temp = l;
-    l_temp = (l_temp^r_p) ;
-
-    l = r;
     r = l_temp;
     
   
@@ -211,10 +182,7 @@ def permute(x,p):
 
 def encrypt(p, ks):
     x, y = p[0], p[1];
-    #keyless 1st round
-    print("ks: ",ks);
-    
-    x,y = enc_one_round_keyless((x,y));
+  
     for k in ks:
       x,y = enc_one_round((x,y), k);
     return(x, y);
@@ -323,7 +291,7 @@ def real_differences_data(n, nr, diff=(0x0040,0)):
   plain1l = plain0l ^ diff[0]; plain1r = plain0r ^ diff[1];
   num_rand_samples = np.sum(Y==0);
   #expand keys and encrypt
-  ks = expand_key(keys, nr-1);
+  ks = expand_key(keys, nr);
   ctdata0l, ctdata0r = encrypt((plain0l, plain0r), ks);
   ctdata1l, ctdata1r = encrypt((plain1l, plain1r), ks);
   #generate blinding values
