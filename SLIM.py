@@ -58,7 +58,8 @@ def enc_one_round(p,k):
     print("round ",round_print, " before S: ",l);
     print("round ",round_print, " before S: ",r_k);
     round_print = round_print + 1;
-    r_s = substitute(r_k,S);
+    r_k2 = r_k * 1;
+    r_s = substitute(r_k2,S);
 
     r_p = permute(r_s, P);
 
@@ -82,8 +83,8 @@ def enc_one_round_keyless(p):
     print("round ",round_print, " before S: ",l);
     print("round ",round_print, " before S: ",r_k);
     round_print = round_print + 1;
-    
-    r_s = substitute(r_k,S);
+    r_k2 = r_k * 1;
+    r_s = substitute(r_k2,S);
 
     r_p = permute(r_s, P);
 
