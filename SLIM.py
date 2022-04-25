@@ -62,7 +62,8 @@ def enc_one_round(p,k):
     l_temp = l*1;
     l_temp = (l_temp^r_p) ;
 
-    l = r_k;
+    #l = r_k;
+    l = r * 1;
     r = l_temp;
     
   
