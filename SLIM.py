@@ -186,7 +186,7 @@ def encrypt(p, ks):
     for k in ks:
 
       #x,y = enc_one_round((x,y), 0);
-      x,y = enc_one_round((x,y), ks[0]);
+      x,y = enc_one_round((x,y), k);
       #if (i%2) == 0 : 
         #x,y = enc_one_round((x,y), ks[0]);
       #else:
