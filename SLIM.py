@@ -223,8 +223,8 @@ def check_testvector():
 #and so on
 #it returns an array of bit vectors containing the same data
 def convert_to_binary(arr):
-  X = np.zeros((4 * WORD_SIZE(),len(arr[0])),dtype=np.uint8);
-  for i in range(4 * WORD_SIZE()):
+  X = np.zeros((6 * WORD_SIZE(),len(arr[0])),dtype=np.uint8);
+  for i in range(6 * WORD_SIZE()):
     index = i // WORD_SIZE();
     offset = WORD_SIZE() - (i % WORD_SIZE()) - 1;
     X[i] = (arr[index] >> offset) & 1;
@@ -313,8 +313,6 @@ def real_differences_data(n, nr, diff=(0x0040,0)):
   ctdata1l[Y==0] = ctdata1l[Y==0] ^ k0; ctdata1r[Y==0] = ctdata1r[Y==0] ^ k1;
 
   #differences
-  diff1 = ctdata0l * 0;
-  diff2 = ctdata0l * 0;
   diff1 = ctdata0l ^ ctdata1l;
   diff2 = ctdata0r ^ ctdata1r;
 
