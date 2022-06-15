@@ -311,6 +311,13 @@ def real_differences_data(n, nr, diff=(0x0040,0)):
   #apply blinding to the samples labelled as random
   ctdata0l[Y==0] = ctdata0l[Y==0] ^ k0; ctdata0r[Y==0] = ctdata0r[Y==0] ^ k1;
   ctdata1l[Y==0] = ctdata1l[Y==0] ^ k0; ctdata1r[Y==0] = ctdata1r[Y==0] ^ k1;
+
+  #differences
+  diff1 = ctdata0l * 0;
+  diff2 = ctdata0l * 0;
+  diff1 = ctdata0l ^ ctdata1l;
+  diff2 = ctdata0r ^ ctdata1r;
+
   #convert to input data for neural networks
-  X = convert_to_binary([ctdata0l, ctdata0r, ctdata1l, ctdata1r]);
+  X = convert_to_binary([ctdata0l, ctdata0r, ctdata1l, ctdata1r,diff1,diff2]);
   return(X,Y);
