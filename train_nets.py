@@ -7,7 +7,6 @@ from pickle import dump
 
 from keras.callbacks import ModelCheckpoint, LearningRateScheduler
 from keras.models import Model
-#from keras.optimizers import Adam
 from keras.layers import Dense, Conv1D, Input, Reshape, Permute, Add, Flatten, BatchNormalization, Activation
 from keras import backend as K
 from keras.regularizers import l2
