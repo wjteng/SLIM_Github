@@ -188,13 +188,7 @@ def encrypt(p, ks):
     x, y = p[0], p[1];
     i = 0;
     for k in ks:
-
-      #x,y = enc_one_round((x,y), 0);
-      x,y = enc_one_round((x,y), ks[0]);
-      #if (i%2) == 0 : 
-        #x,y = enc_one_round((x,y), ks[0]);
-      #else:
-        #x,y = enc_one_round((x,y), ks[1]);
+      x,y = enc_one_round((x,y), k);
     return(x, y);
 
 def decrypt(c, ks):
